@@ -30,10 +30,10 @@ static bool myDetector(InputArray image, OutputArray faces, CascadeClassifier *f
 }
 
 int main(int argc, char** argv) {
-    string annotations = "../train_new_set/pts_pts.txt";
-    string imagesList = "../train_new_set/pts_img.txt";
+    string annotations = "../train_new_set/helen_pts.txt";
+    string imagesList = "../train_new_set/helen_img.txt";
     string configfile_name = "../sample_config_file.xml";
-    string modelfile_name = "model.dat";
+    string modelfile_name = "model_new.dat";
     string cascade_name = "../haarcascade_frontalface_alt.xml";
     Size scale(460, 460);
 
@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
     std::vector<std::vector<Point2f> > Trainlandmarks;
 
     Mat src;
-    for (unsigned long i = 0; i < 100; i++) {
+    for (unsigned long i = 0; i < images.size(); i++) {
         src = imread(images.at(i));
         std::cout << "Image " <<  i << " " << src.rows << " " << src.cols << endl;
 
