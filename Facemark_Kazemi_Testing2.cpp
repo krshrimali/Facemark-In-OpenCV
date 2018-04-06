@@ -27,7 +27,7 @@ bool myDetector( InputArray image, OutputArray ROIs ){
 int main(int argc, char** argv) {
     // Load Face Detector
     // CascadeClassifier faceDetector("../haarcascade_frontalface_alt.xml");
-    String cascade_name = "../haarcascade_frontalface_alt.xml";
+    String cascade_name = "haarcascade_frontalface_alt.xml";
 
     face_cascade.load(cascade_name);
     
@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
 
     // Load landmark detector
     // VideoCapture cam(0);
-    Mat frame = imread("Me.jpg", 1);
+    Mat frame = imread("../helen/testset/2968560214_1.jpg", 1);
     // Variable to store video frame, and it's grayscale
     // Mat frame, gray;
     vector< vector<Point2f> > landmarks;
@@ -80,16 +80,16 @@ int main(int argc, char** argv) {
     // if(waitKey(1) >= 0) return 1;
     waitKey(0);
     destroyAllWindows();
-    bool success = facemark->fit(frame, faces, landmarks);
-    cout << success << endl;
-    if(success)
-    {
-       for(int i = 0; i < landmarks.size(); i++) {
-        //   cout << landmarks[i] << endl;
-          drawLandmarks(frame, landmarks[i]);
-       }
-       cout << "Landmarks done" << endl;
-    }
+    // bool success = facemark->fit(frame, faces, landmarks);
+    // cout << success << endl;
+    // if(success)
+    // {
+    //    for(int i = 0; i < landmarks.size(); i++) {
+    //     //   cout << landmarks[i] << endl;
+    //       drawLandmarks(frame, landmarks[i]);
+    //    }
+    //    cout << "Landmarks done" << endl;
+    // }
     
     imshow("Landmarks Detection", frame);
     waitKey(0);
