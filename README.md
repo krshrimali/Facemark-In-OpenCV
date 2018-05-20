@@ -15,3 +15,47 @@ Getting used to Facemarking. About it : tutorials (https://github.com/opencv/ope
 1.b) Exerpiment - 2 : Use the given LBFModel.yml file and check the outputs. Found *accurate*. 
 
 1.c) Experiment - 3 : Trained my own model, verified results. Found *accurate*.
+
+Stage - 2 : FacemarkKazemi
+2.a) Experiment - 1 : Training FacemarkKazemi Model. Problems faced.
+  2.a).i) - Configuration File? [http://answers.opencv.org/question/187513/configuration-configxml-file-facemarkkazemi-training/][Question Asked : Configuration File, OpenCV Forum] (Level : Easy)
+            Solution : https://github.com/opencv/opencv_contrib/blob/master/modules/face/samples/sample_config_file.xml [sample_config_file.xml]
+  
+  2.a).ii) - Why result poor? On discussion with Vaibhaw, good point here:
+          "1. use one of the training images as query image i.e. predict facemark on one of the train images using modelif the prediction is good, it means model is trained well on training set but not generalized enoughwe have to add more dataif the prediction is not good, something is wrong with training or you will have to tune training parameters"
+    
+ 2.a).iii) Need of more data to train. Vaibhaw's response on Satya Sir's request for the links:
+ 
+      "You can download the Dlib's face landmark data here - http://dlib.net/files/data/ibug_300W_large_face_landmark_dataset.tar.gz which is a larger dataset than Helen.
+
+      I am attaching a Python script (generateMirrorAnnotations.py) that you can use to generate mirrored images and annotations. You will have to modify this script as this was written for a slightly different dataset.
+      This script was written for a database which has following structure:
+      1. All the images and their corresponding annotation files are kept in the same folder
+      2. Each image has 2 annotation files: facial landmarks and face rectangle/bounding box
+      2a. if the image name is image_001.jpg its face landmark file's name is image_001_bv78c.txt and 
+      2b. face rectangle file's name is image_001_rect.txt
+      3. face rectangle files has 4 values separated by space: left, top, width, height i.e. x1, y1, w, h
+      4. facial landmark file has x, y coordinates of each point separated by space on each line
+
+      You need to modify:
+      1. mirrorIndices variable - such that it provides a correct mapping for your dataset when an image is vertically flipped. Helen and iBUG300W have a different order of facial landmarks.
+      Important: Index numbers written in scripts start from 1 instead of 0 i.e. landmark point numbers are from 1 to 78 instead of 0 to 77. I did so because then it becomes much easier to write indices or mirror points.
+      2. name of annotation files
+
+      You can modify drawLandmarks scripts to test whether the mapping you have written is correct or you can use code from these scripts to write your own script.
+      
+      OR
+      You can download a dataset where we have already generated the mirrored images and annotations here https://drive.google.com/open?id=0B3wncKrtnPc_YmlCRENQRzU4UFk
+      "
+  2.a.iv) OpenCV 3.4.1 Required for Facemarking, installed on the server.
+  
+  2.a.v)  Task on editing \_bv70.txt files :
+          Adding line : version : 1, n_points : 68 and braces. (As given in the tutorial)
+          Used Python modules for this, appending by opening the file.
+          Set seek(0) when you want to add in the beginning. (prepending)
+          Also, reduce 70 points to 68 points by deleting last two points.
+  
+  2.a.vi) Debugging detector function : Increase nearest point neighbors from 3 to 5 (anything), and check parameters. Or       keep it as it is. 
+  
+          Draw output points from detector function, draw faces and verify. (VERIFIED)
+          Draw landmarks points recorded in .pts / *[_bv70].txt files 
