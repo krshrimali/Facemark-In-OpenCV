@@ -59,3 +59,23 @@ Stage - 2 : FacemarkKazemi
   
           Draw output points from detector function, draw faces and verify. (VERIFIED)
           Draw landmarks points recorded in .pts / *[_bv70].txt files 
+
+  2.a.vii) Relative shapes error : 
+  `
+  OpenCV(3.4.1-dev) Error: Bad argument (Error while finding relative shape. Aborting....) in getRelativePixels, file /data/kushashwa/Install/opencv_contrib/modules/face/src/trainFacemark.cpp, line 125
+
+TBB Warning: Exact exception propagation is requested by application but the linked library is built without support for it
+
+terminate called after throwing an instance of 'tbb::captured_exception'
+
+  what():  OpenCV(3.4.1-dev) /data/kushashwa/Install/opencv_contrib/modules/face/src/trainFacemark.cpp:125: error: (-5) Bad argument: Error while finding relative shape. Aborting.... in function getRelativePixels`
+
+Solution : Looked like some thing is wrong with the points file. There was one new line added before a point in .txt file, by fault. Removed that. And it worked!
+
+2.b) Experiment - 2 : Model trained successfully. Results - better than before. Can not be called poor though. *Trained with 3.5k images*. One more points file is broken most probably, as was giving segmentation fault. 
+
+
+`Personal Notes : 
+scp -r ubuntu@76.176.29.4:/data/kushashwa/Task_Facemark/facial_landmark_data/* . 
+scp file_name ubuntu@76.176.29.4:/data/kushashwa/Task_Facemark/file_new_name
+`
