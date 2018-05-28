@@ -74,6 +74,8 @@ Solution : Looked like some thing is wrong with the points file. There was one n
 
 2.b) Experiment - 2 : Model trained successfully. Results - better than before. Can not be called poor though. *Trained with 3.5k images*. One more points file is broken most probably, as was giving segmentation fault. 
 
+Task - FacemarkLBF (Final - 9 point trainer)
+Check mirrored images, indices and verify.
 
 `Personal Notes : 
 scp -r ubuntu@76.176.29.4:/data/kushashwa/Task_Facemark/facial_landmark_data/* . 
